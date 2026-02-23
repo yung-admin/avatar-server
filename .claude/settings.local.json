@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl:*)",
+      "Bash(kill %1:*)",
+      "WebSearch",
+      "Bash(npx tsc:*)",
+      "Bash(timeout 5 npx tsx:*)",
+      "Bash(sleep 1:*)",
+      "Bash(lsof -ti:3000 | xargs kill -9 2>/dev/null)",
+      "Bash(npx tsx:*)",
+      "Bash(true:*)",
+      "Bash(bash:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(echo:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}

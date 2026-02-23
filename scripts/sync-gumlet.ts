@@ -88,6 +88,47 @@ async function createSource() {
   }
 }
 
+async function updateSource() {
+  if (!ORIGIN_URL) {
+    console.error("GUMLET_ORIGIN_URL is required to update a source");
+    process.exit(1);
+  }
+  if (!SUBDOMAIN) {
+    console.error("GUMLET_SUBDOMAIN is required to update a source");
+    process.exit(1);
+  }
+
+  // Find existing source by namespace
+  console.log(`Looking up source for ${SUBDOMAIN}...`);
+  const { status: listStatus, data: listData } = await apiRequest("GET", "/image/sources");
+  if (listStatus < 200 || listStatus >= 300) {
+    console.error(`Failed to list sources (${listStatus}):`, JSON.stringify(listData, null, 2));
+    process.exit(1);
+  }
+
+  const sources = (listData as { all_sources: Array<{ id: string; namespace: string; webfolder: { base_url: string } }> }).all_sources;
+  const source = sources.find((s) => s.namespace === SUBDOMAIN);
+  if (!source) {
+    console.error(`Source with namespace '${SUBDOMAIN}' not found. Use create-source instead.`);
+    process.exit(1);
+  }
+
+  console.log(`  Source ID: ${source.id}`);
+  console.log(`  Current origin: ${source.webfolder.base_url}`);
+  console.log(`  New origin:     ${ORIGIN_URL}`);
+
+  const { status, data } = await apiRequest("PUT", `/image/sources/${source.id}`, {
+    base_url: ORIGIN_URL,
+  });
+
+  if (status >= 200 && status < 300) {
+    console.log("Source updated successfully:", JSON.stringify(data, null, 2));
+  } else {
+    console.error(`Failed (${status}):`, JSON.stringify(data, null, 2));
+    process.exit(1);
+  }
+}
+
 async function listSources() {
   console.log("Fetching image sources...");
   const { status, data } = await apiRequest("GET", "/image/sources");
@@ -150,6 +191,9 @@ async function main() {
   switch (command) {
     case "create-source":
       await createSource();
+      break;
+    case "update-source":
+      await updateSource();
       break;
     case "list-sources":
       await listSources();

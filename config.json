@@ -4,7 +4,7 @@
   "imageServing": {
     "mode": "cdn",
     "localBaseUrl": "https://avatar.yogicats.com/static",
-    "cdnBaseUrl": "https://yogicats.gumlet.io"
+    "cdnBaseUrl": "https://avatars.gumlet.io"
   },
   "auth": {
     "enabled": true,
