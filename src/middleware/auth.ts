@@ -8,10 +8,11 @@ export function authMiddleware(config: ServerConfig) {
       return;
     }
 
-    const endpoint = `${req.method} ${req.path}`;
+    const fullPath = req.baseUrl + req.path;
     const isPublic = config.auth.publicEndpoints.some((pe) => {
-      const [method, path] = pe.split(" ");
-      return req.method === method && req.path === path;
+      const [method, ...pathParts] = pe.split(" ");
+      const pePath = pathParts.join(" ");
+      return req.method === method && fullPath === pePath;
     });
 
     if (isPublic) {
