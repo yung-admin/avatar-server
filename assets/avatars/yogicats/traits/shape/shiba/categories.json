@@ -1,0 +1,62 @@
+{
+  "variant": {
+    "name": "Variant",
+    "order": 0,
+    "zIndex": 0,
+    "required": true
+  },
+  "ears": {
+    "name": "Ears",
+    "order": 1,
+    "zIndex": 1,
+    "required": false
+  },
+  "top": {
+    "name": "Clothing",
+    "order": 2,
+    "zIndex": 2,
+    "required": false
+  },
+  "chain": {
+    "name": "Chain",
+    "order": 3,
+    "zIndex": 3,
+    "required": false
+  },
+  "nose": {
+    "name": "Nose",
+    "order": 4,
+    "zIndex": 4,
+    "required": false
+  },
+  "mouth": {
+    "name": "Mouth",
+    "order": 5,
+    "zIndex": 5,
+    "required": false
+  },
+  "eyes": {
+    "name": "Eyes",
+    "order": 6,
+    "zIndex": 6,
+    "required": true
+  },
+  "faceart": {
+    "name": "Face Art",
+    "order": 7,
+    "zIndex": 7,
+    "required": false
+  },
+  "glasses": {
+    "name": "Glasses",
+    "order": 8,
+    "zIndex": 8,
+    "required": false
+  },
+  "headgear": {
+    "name": "Headgear",
+    "order": 9,
+    "zIndex": 9,
+    "required": false
+  }
+}

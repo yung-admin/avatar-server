@@ -451,16 +451,105 @@ All `imageUrl` values must be **fully qualified URLs** that the editor can load 
 
 ---
 
+## Health Check
+
+### `GET /health`
+
+Returns server status. **No authentication required.** Use this for load balancer health probes or uptime monitors.
+
+**Response**
+
+```json
+{ "status": "ok" }
+```
+
+---
+
+## Response Compression
+
+All JSON responses support **gzip compression**. Clients that send `Accept-Encoding: gzip` will receive compressed responses with `Content-Encoding: gzip` header. This significantly reduces payload size for large endpoints like `/bases/:base/tree`.
+
+---
+
+## Composite Render
+
+### `POST /render` — Render Composited Avatar
+
+Layers selected traits into a single PNG image, using `zIndex` from category metadata to determine stacking order (lowest on bottom, highest on top).
+
+All trait images are expected to be **1600×1600 RGBA PNGs**, pre-aligned for compositing.
+
+**Request body**
+
+```json
+{
+  "base": "yogicat",
+  "traits": ["eyes-hi-blush", "headgear-baby-beanie", "top-90s-sweater"],
+  "variant": "cute",
+  "variantTraits": ["pattern-belly", "arms-brrr"],
+  "width": 512,
+  "height": 512
+}
+```
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `base` | `string` | Yes | Base body type (e.g. `"yogicat"`, `"shiba"`) |
+| `traits` | `string[]` | Yes | Trait IDs from regular categories (eyes, headgear, etc.) |
+| `variant` | `string` | No | Variant name (e.g. `"cute"`, `"boss"`) |
+| `variantTraits` | `string[]` | No | Variant sub-trait IDs (e.g. pattern, arms). Requires `variant`. |
+| `width` | `number` | No | Output width in pixels (1–4096, default 1600) |
+| `height` | `number` | No | Output height in pixels (1–4096, default 1600) |
+
+**Response:** `image/png` binary
+
+**Compositing order** is determined by `zIndex` from `categories.json`:
+
+| zIndex | Category | Layer role |
+|--------|----------|------------|
+| 0 | variant | Body base (pattern + arms) — bottom layer |
+| 1 | ears | Behind/part of head |
+| 2 | top | Clothing on body |
+| 3 | chain | Over clothing |
+| 4 | nose | On face |
+| 5 | mouth | On face |
+| 6 | eyes | On face, above nose/mouth |
+| 7 | faceart | Decorations over face features |
+| 8 | glasses | Over eyes |
+| 9 | headgear | Top of everything |
+
+Variant sub-traits (pattern, arms) are composited at the variant's zIndex (0), making them the bottom-most layers.
+
+**Error responses**
+
+| Status | Meaning |
+|--------|---------|
+| `400` | Invalid or missing required fields |
+| `422` | Trait ID not found, image file missing, or render failure |
+
+```json
+{ "error": "Trait not found: eyes-nonexistent" }
+```
+
+**Notes:**
+- Only static (non-animated) traits can be rendered. Animated traits are not supported.
+- Compositing always happens at native 1600×1600 resolution, then resizes to the requested dimensions.
+- Trait IDs are resolved by scanning each category's `data.json` — the ID must match exactly.
+
+---
+
 ## Summary
 
-| Endpoint | Response Type | Required |
-|----------|--------------|----------|
-| `GET /` | `ProjectManifest` | Yes |
-| `GET /bases` | `string[]` | Yes |
-| `GET /bases/:base` | `BaseInfo` | Yes |
-| `GET /bases/:base/tree` | `TraitTree` | Yes |
-| `GET /bases/:base/categories/:cat` | `CategoryResponse` | Yes |
-| `GET /bases/:base/categories/:cat/:id` | `TraitItem` | Yes |
-| `GET /bases/:base/variants` | `VariantDetail[]` | Yes |
-| `GET /bases/:base/variants/:variant` | `VariantDetail` | Yes |
-| `GET /premades` | `PremadeItem[]` | Only if `hasPremades: true` |
+| Endpoint | Method | Response Type | Auth Required |
+|----------|--------|--------------|---------------|
+| `/health` | GET | `{ status: "ok" }` | No |
+| `/` | GET | `ProjectManifest` | Yes |
+| `/bases` | GET | `string[]` | Yes |
+| `/bases/:base` | GET | `BaseInfo` | Yes |
+| `/bases/:base/tree` | GET | `TraitTree` | Yes |
+| `/bases/:base/categories/:cat` | GET | `CategoryResponse` | Yes |
+| `/bases/:base/categories/:cat/:id` | GET | `TraitItem` | Yes |
+| `/bases/:base/variants` | GET | `VariantDetail[]` | Yes |
+| `/bases/:base/variants/:variant` | GET | `VariantDetail` | Yes |
+| `/premades` | GET | `PremadeItem[]` | Only if `hasPremades: true` |
+| `/render` | POST | `image/png` binary | Yes |

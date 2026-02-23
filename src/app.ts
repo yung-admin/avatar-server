@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import compression from "compression";
 import { ServerConfig } from "./types";
 import { Cache } from "./services/cache";
 import { authMiddleware } from "./middleware/auth";
@@ -8,13 +9,20 @@ import { createManifestRouter } from "./routes/manifest.router";
 import { createBaseRouter } from "./routes/base.router";
 import { createCategoryRouter } from "./routes/category.router";
 import { createVariantRouter, createPremadesRouter } from "./routes/variant.router";
+import { createRenderRouter } from "./routes/render.router";
 
 export function createApp(config: ServerConfig): express.Express {
   const app = express();
   const cache = new Cache(config.cache.ttlSeconds);
 
   app.use(cors());
+  app.use(compression());
   app.use(express.json());
+
+  // Health check — no auth required
+  app.get("/health", (_req, res) => {
+    res.json({ status: "ok" });
+  });
 
   // Static file serving for images
   app.use("/static", express.static(config.assetsBasePath));
@@ -28,6 +36,7 @@ export function createApp(config: ServerConfig): express.Express {
   app.use("/api/:project/bases", createCategoryRouter(config, cache));
   app.use("/api/:project/bases", createVariantRouter(config, cache));
   app.use("/api/:project/premades", createPremadesRouter(config, cache));
+  app.use("/api/:project", createRenderRouter(config));
 
   // Error handler
   app.use(errorHandler);
