@@ -1,0 +1,1 @@
+mystyle_v1, front_view, shiba, top, love, purple, orange, flat_color, text_graphic, thick_outline, none, medium, no_logo, isolated_trait, static, transparent_background, partial_canvas

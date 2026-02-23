@@ -1,0 +1,90 @@
+[
+  {
+    "name": "None",
+    "path": "none.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-none",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Yogicat",
+    "path": "yogicat.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-yogicat",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Boss Stripes",
+    "path": "bossstripes.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-boss-stripes",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Ice Stripes",
+    "path": "icestripes.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-ice-stripes",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Mas Red",
+    "path": "masred.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-mas-red",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Rainbow Spots",
+    "path": "rainbowspots.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-rainbow-spots",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Rainbow Stripes",
+    "path": "rainbowstripes.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-rainbow-stripes",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Royal Stripes",
+    "path": "royalstripes.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-royal-stripes",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  }
+]

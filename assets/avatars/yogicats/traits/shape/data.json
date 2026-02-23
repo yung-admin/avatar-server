@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Shiba",
+    "path": "shiba",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "shape-shiba",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  },
+  {
+    "name": "Yogicat",
+    "path": "yogicat",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "shape-yogicat",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  }
+]

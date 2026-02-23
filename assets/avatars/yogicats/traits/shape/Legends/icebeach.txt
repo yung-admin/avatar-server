@@ -1,0 +1,1 @@
+mystyle_v1, front_view, legends, icebeach, white, blue, gradient, multicolor, thick_outline, none, complex, has_logo, full_pfp, static, transparent_background

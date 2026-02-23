@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Blush",
+    "path": "blush.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-blush",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, yogicat, nose, blush, pink, white, flat_color, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Boss",
+    "path": "boss.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-boss",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, yogicat, nose, boss, black, white, flat_color, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Fuchsia",
+    "path": "fuchsia.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-fuchsia",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, yogicat, nose, fuchsia, pink, white, flat_color, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Joe Cool",
+    "path": "joecool.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-joe-cool",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, yogicat, nose, joecool, black, red, flat_color, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Lucky",
+    "path": "lucky.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-lucky",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, yogicat, nose, lucky, green, none, flat_color, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Mas",
+    "path": "mas.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-mas",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, yogicat, nose, mas, blue, white, flat_color, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Neon Pink",
+    "path": "neonpink.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-neon-pink",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, yogicat, nose, neonpink, magenta, none, flat_color, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Red",
+    "path": "red.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-red",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, yogicat, nose, red, orange, white, flat_color, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Royal",
+    "path": "royal.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-royal",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, yogicat, nose, royal, purple, white, gradient, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  }
+]

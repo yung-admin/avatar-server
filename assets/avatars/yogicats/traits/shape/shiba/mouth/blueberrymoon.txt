@@ -1,0 +1,1 @@
+mystyle_v1, front_view, shiba, mouth, blueberrymoon, black, rainbow, flat_color, multicolor, thick_outline, none, medium, has_logo, isolated_trait, static, transparent_background, partial_canvas

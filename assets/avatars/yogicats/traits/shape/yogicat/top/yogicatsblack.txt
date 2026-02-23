@@ -1,0 +1,1 @@
+mystyle_v1, front_view, yogicat, top, yogicatsblack, black, rainbow, flat_color, text_graphic, no_outline, none, medium, has_logo, isolated_trait, static, transparent_background, partial_canvas

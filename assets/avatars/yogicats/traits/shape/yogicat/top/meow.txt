@@ -1,0 +1,1 @@
+mystyle_v1, front_view, yogicat, top, meow, blue, pink, gradient, text_graphic, thick_outline, none, medium, no_logo, isolated_trait, static, transparent_background, partial_canvas

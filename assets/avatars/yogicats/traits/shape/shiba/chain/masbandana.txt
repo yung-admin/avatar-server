@@ -1,0 +1,1 @@
+mystyle_v1, front_view, shiba, chain, masbandana, blue, black, flat_color, paisley, thick_outline, none, medium, no_logo, isolated_trait, static, transparent_background, partial_canvas

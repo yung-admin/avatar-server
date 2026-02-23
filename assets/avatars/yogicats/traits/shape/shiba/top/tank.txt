@@ -1,0 +1,1 @@
+mystyle_v1, front_view, shiba, top, tank, black, blue, flat_color, solid, thick_outline, none, simple, has_logo, isolated_trait, static, transparent_background, partial_canvas

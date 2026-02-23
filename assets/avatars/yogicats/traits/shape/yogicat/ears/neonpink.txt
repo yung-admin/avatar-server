@@ -1,0 +1,1 @@
+mystyle_v1, front_view, yogicat, ears, neonpink, pink, none, flat_color, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas

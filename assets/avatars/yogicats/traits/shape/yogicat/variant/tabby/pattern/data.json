@@ -1,0 +1,24 @@
+[
+  {
+    "name": "None",
+    "path": "none.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-none",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Face Patch",
+    "path": "facepatch.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-face-patch",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  }
+]

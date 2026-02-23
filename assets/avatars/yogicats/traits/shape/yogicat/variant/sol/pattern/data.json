@@ -1,0 +1,46 @@
+[
+  {
+    "name": "None",
+    "path": "none.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-none",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Belly",
+    "path": "belly.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-belly",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Rainbow",
+    "path": "rainbow.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-rainbow",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Tiger",
+    "path": "tiger.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-tiger",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  }
+]

@@ -1,0 +1,1 @@
+mystyle_v1, front_view, yogicat, top, kittens, green, white, flat_color, text_graphic, thick_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas

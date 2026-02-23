@@ -1,0 +1,1 @@
+mystyle_v1, front_view, legends, sir_sellalot, black, orange, gradient, solid, thick_outline, none, medium, no_logo, full_pfp, static, transparent_background

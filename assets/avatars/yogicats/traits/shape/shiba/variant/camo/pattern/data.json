@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Lucky",
+    "path": "lucky.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-lucky-camo",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Mas",
+    "path": "mas.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-mas-camo",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Royal",
+    "path": "royal.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-royal-camo",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Sand",
+    "path": "sand.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-sand-camo",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  }
+]

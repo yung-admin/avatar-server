@@ -1,0 +1,1 @@
+mystyle_v1, front_view, yogicat, glasses, camounerd, green, black, flat_color, camo, no_outline, none, medium, no_logo, isolated_trait, static, transparent_background, partial_canvas

@@ -1,0 +1,46 @@
+[
+  {
+    "name": "None",
+    "path": "none.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-none",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Ear Patch",
+    "path": "earpatch.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-ear-patch",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Face Patch",
+    "path": "facepatch.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-face-patch",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Belly",
+    "path": "belly.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-belly",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Boss",
+    "path": "boss.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-boss",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, nose, boss, black, gray, gradient, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Cute Cool",
+    "path": "cutecool.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-cute-cool",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, nose, cutecool, pink, red, flat_color, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Cute",
+    "path": "cute.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-cute",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, nose, cute, pink, none, gradient, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Ice",
+    "path": "ice.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-ice",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, nose, ice, cyan, none, gradient, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Joe Cool",
+    "path": "joecool.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-joe-cool",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, nose, joecool, black, red, gradient, solid, thin_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Neon",
+    "path": "neon.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-neon",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, nose, neon, pink, none, flat_color, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Royal Camo",
+    "path": "royalcamou.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-royal-camo",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, nose, royalcamou, purple, pink, cel_shaded, solid, thin_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Royal Fizz",
+    "path": "royalfizz.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "nose-royal-fizz",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, nose, royalfizz, purple, pink, gradient, multicolor, no_outline, sparkle, medium, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  }
+]

@@ -1,0 +1,1 @@
+mystyle_v1, front_view, yogicat, top, camopirate, green, yellow, flat_color, camo, thick_outline, none, medium, has_logo, isolated_trait, static, transparent_background, partial_canvas

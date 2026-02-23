@@ -1,0 +1,46 @@
+[
+  {
+    "name": "None",
+    "path": "none.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-none",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Belly",
+    "path": "belly.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-belly",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Mas Red",
+    "path": "masred.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-mas-red",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Rainbow Stripes",
+    "path": "rainbowstripes.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-rainbow-stripes",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  }
+]

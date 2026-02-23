@@ -1,0 +1,1 @@
+mystyle_v1, front_view, shiba, mouth, avax, black, red, flat_color, solid, thick_outline, none, medium, has_logo, isolated_trait, animated, transparent_background, partial_canvas

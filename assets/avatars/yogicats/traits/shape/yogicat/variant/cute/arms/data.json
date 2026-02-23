@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Brrr",
+    "path": "brrr.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "arms-brrr",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Cupcake",
+    "path": "cupcake.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "arms-cupcake",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Titter",
+    "path": "titter.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "arms-titter",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Titter Paws",
+    "path": "titterpaws.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "arms-titter-paws",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  }
+]

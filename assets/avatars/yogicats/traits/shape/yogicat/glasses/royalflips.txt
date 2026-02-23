@@ -1,0 +1,1 @@
+mystyle_v1, front_view, yogicat, glasses, royalflips, purple, none, gradient, solid, no_outline, none, medium, no_logo, isolated_trait, static, transparent_background, partial_canvas

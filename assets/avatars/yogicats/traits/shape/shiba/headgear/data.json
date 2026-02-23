@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Cherry Blossom",
+    "path": "cherryblossom.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-cherry-blossom",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, headgear, cherryblossom, pink, yellow, flat_color, solid, thick_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Noodle Bowl",
+    "path": "noodlebowl.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-noodle-bowl",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, headgear, noodlebowl, yellow, blue, flat_color, geometric, thick_outline, none, medium, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Rainbow Bowl",
+    "path": "rainbowbowl.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-rainbow-bowl",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, headgear, rainbowbowl, rainbow, white, flat_color, multicolor, thick_outline, none, complex, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Boss Bandana",
+    "path": "bossbandana.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-boss-bandana",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, headgear, bossbandana, black, white, flat_color, paisley, no_outline, none, medium, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Cute Bandana",
+    "path": "cutebandana.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-cute-bandana",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, headgear, cutebandana, pink, white, flat_color, paisley, thick_outline, none, medium, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Halo",
+    "path": "halo.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-halo",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, headgear, halo, yellow, none, translucent, solid, no_outline, glowing, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Mas Bandana",
+    "path": "masbandana.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-mas-bandana",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, headgear, masbandana, blue, white, flat_color, paisley, thick_outline, none, medium, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Red Bandana",
+    "path": "redbandana.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-red-bandana",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, headgear, redbandana, red, white, flat_color, paisley, thick_outline, none, medium, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  }
+]

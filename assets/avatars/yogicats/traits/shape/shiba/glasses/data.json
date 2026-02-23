@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Boss",
+    "path": "boss.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "glasses-boss",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, glasses, boss, black, gray, cel_shaded, solid, no_outline, none, medium, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Cute",
+    "path": "cute.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "glasses-cute",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, glasses, cute, pink, none, cel_shaded, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Joe Cool",
+    "path": "joecool.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "glasses-joe-cool",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, shiba, glasses, joecool, pink, orange, gradient, solid, thick_outline, none, medium, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  }
+]

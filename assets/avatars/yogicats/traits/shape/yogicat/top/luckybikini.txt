@@ -1,0 +1,1 @@
+mystyle_v1, front_view, yogicat, top, luckybikini, green, black, flat_color, solid, thick_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas

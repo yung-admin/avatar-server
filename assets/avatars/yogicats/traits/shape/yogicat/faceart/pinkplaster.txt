@@ -1,0 +1,1 @@
+mystyle_v1, front_view, yogicat, faceart, pinkplaster, pink, none, gradient, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas

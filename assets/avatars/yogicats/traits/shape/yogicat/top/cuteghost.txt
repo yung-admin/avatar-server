@@ -1,0 +1,1 @@
+mystyle_v1, front_view, yogicat, top, cuteghost, pink, black, flat_color, geometric, thick_outline, none, complex, has_logo, isolated_trait, static, transparent_background, partial_canvas

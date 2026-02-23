@@ -1,0 +1,1 @@
+mystyle_v1, front_view, shiba, eyes, mixed_animated, black, orange, flat_color, multicolor, thick_outline, none, medium, no_logo, isolated_trait, animated, transparent_background, partial_canvas

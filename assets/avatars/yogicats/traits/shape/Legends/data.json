@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Bosscat",
+    "path": "bosscat.png",
+    "id": "legends-bosscat",
+    "chance": 100,
+    "blockedBy": [],
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, legends, bosscat, green, red, flat_color, camo, thick_outline, none, complex, has_logo, full_pfp, static, transparent_background"
+  },
+  {
+    "name": "Bosscat2",
+    "path": "bosscat2.png",
+    "id": "legends-bosscat2",
+    "chance": 100,
+    "blockedBy": [],
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, legends, bosscat2, green, tan, flat_color, camo, thick_outline, none, complex, has_logo, full_pfp, static, transparent_background"
+  },
+  {
+    "name": "Icebeach",
+    "path": "icebeach.png",
+    "id": "legends-icebeach",
+    "chance": 100,
+    "blockedBy": [],
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, legends, icebeach, white, blue, gradient, multicolor, thick_outline, none, complex, has_logo, full_pfp, static, transparent_background"
+  },
+  {
+    "name": "Nerd",
+    "path": "nerd.png",
+    "id": "legends-nerd",
+    "chance": 100,
+    "blockedBy": [],
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, legends, nerd, blue, pink, flat_color, camo, thick_outline, sparkle, complex, has_logo, full_pfp, static, transparent_background"
+  },
+  {
+    "name": "Sir Sellalot",
+    "path": "sir_sellalot.png",
+    "id": "legends-sir-sellalot",
+    "chance": 100,
+    "blockedBy": [],
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true,
+    "training_tags": "mystyle_v1, front_view, legends, sir_sellalot, black, orange, gradient, solid, thick_outline, none, medium, no_logo, full_pfp, static, transparent_background"
+  }
+]

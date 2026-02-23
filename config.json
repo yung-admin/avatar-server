@@ -1,0 +1,17 @@
+{
+  "port": 3000,
+  "assetsBasePath": "./assets",
+  "imageServing": {
+    "mode": "local",
+    "localBaseUrl": "http://localhost:3000/static",
+    "cdnBaseUrl": "https://yogicats.gumlet.io"
+  },
+  "auth": {
+    "enabled": false,
+    "apiKeys": [],
+    "publicEndpoints": ["GET /api/projects"]
+  },
+  "cache": {
+    "ttlSeconds": 300
+  }
+}

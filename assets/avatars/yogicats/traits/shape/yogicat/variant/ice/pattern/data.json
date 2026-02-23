@@ -1,0 +1,35 @@
+[
+  {
+    "name": "None",
+    "path": "none.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-none",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Ear Patch",
+    "path": "earpatch.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-ear-patch",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Snow Spots",
+    "path": "snowspots.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "pattern-snow-spots",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  }
+]

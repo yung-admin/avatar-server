@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Boss",
+    "path": "boss",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-boss",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  },
+  {
+    "name": "Camo",
+    "path": "camo",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-camo",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  },
+  {
+    "name": "Cute",
+    "path": "cute",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-cute",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  },
+  {
+    "name": "Ice",
+    "path": "ice",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-ice",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  },
+  {
+    "name": "Lucky",
+    "path": "lucky",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-lucky",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  },
+  {
+    "name": "OG",
+    "path": "OG",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-og",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  },
+  {
+    "name": "Royal",
+    "path": "royal",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-royal",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  }
+]

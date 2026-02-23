@@ -1,0 +1,1 @@
+mystyle_v1, front_view, shiba, chain, avax, red, none, cel_shaded, solid, no_outline, none, simple, has_logo, isolated_trait, static, transparent_background, partial_canvas

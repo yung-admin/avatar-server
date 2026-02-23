@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Boss",
+    "path": "boss",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-boss",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  },
+  {
+    "name": "Cute",
+    "path": "cute",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-cute",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  },
+  {
+    "name": "Grey",
+    "path": "grey",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-grey",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  },
+  {
+    "name": "Ice",
+    "path": "ice",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-ice",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  },
+  {
+    "name": "Royal",
+    "path": "royal",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-royal",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  },
+  {
+    "name": "Snow",
+    "path": "snow",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-snow",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  },
+  {
+    "name": "Sol",
+    "path": "sol",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-sol",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  },
+  {
+    "name": "Tabby",
+    "path": "tabby",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "variant-tabby",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": false
+  }
+]

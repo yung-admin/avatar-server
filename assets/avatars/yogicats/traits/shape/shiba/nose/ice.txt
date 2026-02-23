@@ -1,0 +1,1 @@
+mystyle_v1, front_view, shiba, nose, ice, cyan, none, gradient, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas
