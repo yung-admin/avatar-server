@@ -8,7 +8,7 @@
   },
   "auth": {
     "enabled": false,
-    "apiKeys": [],
+    "apiKeys": ["yc_4981e369955d9062715c6ab73d8536230814f2a254305118fe708b7e926adc4f"],
     "publicEndpoints": ["GET /api/projects"]
   },
   "cache": {

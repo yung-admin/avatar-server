@@ -1,137 +1,189 @@
-import fs from "fs";
-import path from "path";
+/**
+ * Gumlet CDN Management Script
+ *
+ * Gumlet is a CDN proxy — it does NOT store your images. You create an
+ * "image source" pointing to your origin server (or S3), and Gumlet
+ * fetches, optimizes, caches, and serves images on demand.
+ *
+ * This script helps you:
+ *   1. Create a web-folder image source pointing to your origin
+ *   2. List your existing sources
+ *   3. Purge cached images when you've updated assets
+ *
+ * Usage:
+ *   npm run sync:gumlet -- create-source
+ *   npm run sync:gumlet -- list-sources
+ *   npm run sync:gumlet -- purge <url-path>
+ *   npm run sync:gumlet -- purge-all
+ *
+ * Requires GUMLET_API_KEY, GUMLET_SUBDOMAIN, and GUMLET_ORIGIN_URL in .env
+ */
+
+import "dotenv/config";
 import https from "https";
 
-const ASSETS_DIR = path.resolve(__dirname, "..", "assets");
-const MANIFEST_PATH = path.resolve(__dirname, "..", ".gumlet-manifest.json");
+const API_KEY = process.env.GUMLET_API_KEY;
+const SUBDOMAIN = process.env.GUMLET_SUBDOMAIN;
+const ORIGIN_URL = process.env.GUMLET_ORIGIN_URL;
 
-const GUMLET_API_KEY = process.env.GUMLET_API_KEY;
-const GUMLET_COLLECTION_ID = process.env.GUMLET_COLLECTION_ID;
-
-interface ManifestEntry {
-  size: number;
-  mtimeMs: number;
-  uploadedAt: string;
-}
-
-type Manifest = Record<string, ManifestEntry>;
-
-function loadManifest(): Manifest {
-  if (fs.existsSync(MANIFEST_PATH)) {
-    return JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf-8"));
-  }
-  return {};
-}
-
-function saveManifest(manifest: Manifest): void {
-  fs.writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2));
-}
-
-function walkPngs(dir: string): string[] {
-  const results: string[] = [];
-  const entries = fs.readdirSync(dir, { withFileTypes: true });
-  for (const entry of entries) {
-    const fullPath = path.join(dir, entry.name);
-    if (entry.isDirectory()) {
-      results.push(...walkPngs(fullPath));
-    } else if (entry.name.toLowerCase().endsWith(".png")) {
-      results.push(fullPath);
-    }
-  }
-  return results;
-}
-
-function needsUpload(filePath: string, manifest: Manifest): boolean {
-  const stat = fs.statSync(filePath);
-  const existing = manifest[filePath];
-  if (!existing) return true;
-  return existing.size !== stat.size || existing.mtimeMs !== stat.mtimeMs;
-}
-
-async function uploadFile(filePath: string, relativePath: string): Promise<void> {
-  const fileBuffer = fs.readFileSync(filePath);
-  const boundary = "----FormBoundary" + Math.random().toString(36).slice(2);
-
-  let body = "";
-  body += `--${boundary}\r\n`;
-  body += `Content-Disposition: form-data; name="file"; filename="${path.basename(filePath)}"\r\n`;
-  body += `Content-Type: image/png\r\n\r\n`;
-
-  const bodyStart = Buffer.from(body, "utf-8");
-  const bodyEnd = Buffer.from(`\r\n--${boundary}\r\nContent-Disposition: form-data; name="path"\r\n\r\n${relativePath}\r\n--${boundary}\r\nContent-Disposition: form-data; name="collection_id"\r\n\r\n${GUMLET_COLLECTION_ID}\r\n--${boundary}--\r\n`, "utf-8");
-
-  const payload = Buffer.concat([bodyStart, fileBuffer, bodyEnd]);
+function apiRequest(method: string, path: string, body?: object): Promise<{ status: number; data: unknown }> {
+  const payload = body ? JSON.stringify(body) : undefined;
 
   return new Promise((resolve, reject) => {
     const req = https.request(
       {
         hostname: "api.gumlet.com",
-        path: "/v1/image/upload",
-        method: "POST",
+        path: `/v1${path}`,
+        method,
         headers: {
-          Authorization: `Bearer ${GUMLET_API_KEY}`,
-          "Content-Type": `multipart/form-data; boundary=${boundary}`,
-          "Content-Length": payload.length,
+          Authorization: `Bearer ${API_KEY}`,
+          "Content-Type": "application/json",
+          ...(payload ? { "Content-Length": Buffer.byteLength(payload) } : {}),
         },
       },
       (res) => {
         let data = "";
         res.on("data", (chunk) => (data += chunk));
         res.on("end", () => {
-          if (res.statusCode && res.statusCode >= 200 && res.statusCode < 300) {
-            resolve();
-          } else {
-            reject(new Error(`Upload failed (${res.statusCode}): ${data}`));
+          try {
+            resolve({ status: res.statusCode || 0, data: JSON.parse(data) });
+          } catch {
+            resolve({ status: res.statusCode || 0, data });
           }
         });
       }
     );
     req.on("error", reject);
-    req.write(payload);
+    if (payload) req.write(payload);
     req.end();
   });
 }
 
-async function main() {
-  if (!GUMLET_API_KEY || !GUMLET_COLLECTION_ID) {
-    console.error("Missing GUMLET_API_KEY or GUMLET_COLLECTION_ID env vars");
+async function createSource() {
+  if (!ORIGIN_URL) {
+    console.error("GUMLET_ORIGIN_URL is required to create a source");
+    process.exit(1);
+  }
+  if (!SUBDOMAIN) {
+    console.error("GUMLET_SUBDOMAIN is required to create a source");
     process.exit(1);
   }
 
-  console.log("Scanning assets directory...");
-  const allPngs = walkPngs(ASSETS_DIR);
-  console.log(`Found ${allPngs.length} PNG files`);
+  console.log(`Creating web-folder source...`);
+  console.log(`  Subdomain: ${SUBDOMAIN}.gumlet.io`);
+  console.log(`  Origin:    ${ORIGIN_URL}`);
 
-  const manifest = loadManifest();
-  const toUpload = allPngs.filter((f) => needsUpload(f, manifest));
-  console.log(`${toUpload.length} files need uploading`);
+  const { status, data } = await apiRequest("POST", "/image/sources", {
+    name: SUBDOMAIN,
+    source_type: "web_folder",
+    base_url: ORIGIN_URL,
+    subdomain: SUBDOMAIN,
+  });
 
-  let uploaded = 0;
-  let failed = 0;
+  if (status >= 200 && status < 300) {
+    console.log("Source created successfully:", JSON.stringify(data, null, 2));
+  } else {
+    console.error(`Failed (${status}):`, JSON.stringify(data, null, 2));
+    process.exit(1);
+  }
+}
 
-  for (const filePath of toUpload) {
-    const relativePath = path.relative(ASSETS_DIR, filePath);
-    try {
-      await uploadFile(filePath, relativePath);
-      const stat = fs.statSync(filePath);
-      manifest[filePath] = {
-        size: stat.size,
-        mtimeMs: stat.mtimeMs,
-        uploadedAt: new Date().toISOString(),
-      };
-      uploaded++;
-      if (uploaded % 10 === 0) {
-        console.log(`Uploaded ${uploaded}/${toUpload.length}...`);
-        saveManifest(manifest);
-      }
-    } catch (err) {
-      console.error(`Failed to upload ${relativePath}:`, err);
-      failed++;
-    }
+async function listSources() {
+  console.log("Fetching image sources...");
+  const { status, data } = await apiRequest("GET", "/image/sources");
+
+  if (status >= 200 && status < 300) {
+    console.log(JSON.stringify(data, null, 2));
+  } else {
+    console.error(`Failed (${status}):`, JSON.stringify(data, null, 2));
+    process.exit(1);
+  }
+}
+
+async function purgeCache(urlPath: string) {
+  if (!SUBDOMAIN) {
+    console.error("GUMLET_SUBDOMAIN is required for cache purging");
+    process.exit(1);
   }
 
-  saveManifest(manifest);
-  console.log(`Done. Uploaded: ${uploaded}, Failed: ${failed}, Skipped: ${allPngs.length - toUpload.length}`);
+  console.log(`Purging cache for: ${urlPath}`);
+  const { status, data } = await apiRequest("POST", `/purge/${SUBDOMAIN}`, {
+    url_path: urlPath,
+  });
+
+  if (status >= 200 && status < 300) {
+    console.log("Cache purged:", JSON.stringify(data, null, 2));
+  } else {
+    console.error(`Failed (${status}):`, JSON.stringify(data, null, 2));
+    process.exit(1);
+  }
+}
+
+async function purgeAll() {
+  if (!SUBDOMAIN) {
+    console.error("GUMLET_SUBDOMAIN is required for cache purging");
+    process.exit(1);
+  }
+
+  console.log(`Purging entire cache for ${SUBDOMAIN}.gumlet.io ...`);
+  console.log("Note: full workspace purge requires Business or Enterprise plan.");
+  const { status, data } = await apiRequest("POST", `/purge/${SUBDOMAIN}`, {
+    purge_all: true,
+  });
+
+  if (status >= 200 && status < 300) {
+    console.log("Cache purged:", JSON.stringify(data, null, 2));
+  } else {
+    console.error(`Failed (${status}):`, JSON.stringify(data, null, 2));
+    process.exit(1);
+  }
+}
+
+async function main() {
+  if (!API_KEY) {
+    console.error("Missing GUMLET_API_KEY in .env");
+    process.exit(1);
+  }
+
+  const [command, ...args] = process.argv.slice(2);
+
+  switch (command) {
+    case "create-source":
+      await createSource();
+      break;
+    case "list-sources":
+      await listSources();
+      break;
+    case "purge":
+      if (!args[0]) {
+        console.error("Usage: npm run sync:gumlet -- purge <url-path>");
+        console.error("Example: npm run sync:gumlet -- purge /avatars/yogicats/traits/shape/yogicat/headgear/babybeanie.png");
+        process.exit(1);
+      }
+      await purgeCache(args[0]);
+      break;
+    case "purge-all":
+      await purgeAll();
+      break;
+    default:
+      console.log("Gumlet CDN Management");
+      console.log("");
+      console.log("Gumlet is a CDN proxy — it fetches images from your origin server,");
+      console.log("optimizes them, and serves via CDN. No file uploading needed.");
+      console.log("");
+      console.log("Commands:");
+      console.log("  create-source  Create a web-folder image source pointing to your origin");
+      console.log("  list-sources   List all configured image sources");
+      console.log("  purge <path>   Purge CDN cache for a specific image URL path");
+      console.log("  purge-all      Purge entire CDN cache (Business/Enterprise plan only)");
+      console.log("");
+      console.log("Setup:");
+      console.log("  1. Set GUMLET_API_KEY, GUMLET_SUBDOMAIN, GUMLET_ORIGIN_URL in .env");
+      console.log("  2. Run: npm run sync:gumlet -- create-source");
+      console.log("  3. Set IMAGE_MODE=cdn in .env to switch API responses to CDN URLs");
+      console.log("  4. Images at {ORIGIN}/path/image.png are now served via {SUBDOMAIN}.gumlet.io/path/image.png");
+      break;
+  }
 }
 
 main();
