@@ -256,7 +256,7 @@
     "path": "sunriseflips.png",
     "chance": 100,
     "blockedBy": [],
-    "id": "glasses-sunrise",
+    "id": "glasses-sunrise-v2",
     "require": [],
     "multiTrait": [],
     "isAnimated": false,
