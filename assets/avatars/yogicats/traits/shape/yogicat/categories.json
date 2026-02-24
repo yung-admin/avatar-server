@@ -1,4 +1,10 @@
 {
+  "background": {
+    "name": "Background",
+    "order": -1,
+    "zIndex": -1,
+    "required": false
+  },
   "variant": {
     "name": "Variant",
     "order": 0,

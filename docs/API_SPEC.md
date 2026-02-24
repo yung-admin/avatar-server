@@ -507,7 +507,8 @@ All trait images are expected to be **1600×1600 RGBA PNGs**, pre-aligned for co
 
 | zIndex | Category | Layer role |
 |--------|----------|------------|
-| 0 | variant | Body base (pattern + arms) — bottom layer |
+| -1 | background | Background image — bottom-most layer |
+| 0 | variant | Body base (pattern + arms) |
 | 1 | ears | Behind/part of head |
 | 2 | top | Clothing on body |
 | 3 | chain | Over clothing |
