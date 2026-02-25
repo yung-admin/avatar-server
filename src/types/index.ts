@@ -74,6 +74,7 @@ export interface ProjectManifest {
   name: string;
   bases: string[];
   hasPremades: boolean;
+  defaultImageUrl: string | null;
 }
 
 export interface VariantSubCategory {

@@ -36,6 +36,14 @@ export function buildFrameUrl(
   return `${getBaseUrl(config)}/avatars/${project}/traits/shape/${base}/${category}/${traitFolder}/${frameFilename}`;
 }
 
+export function buildDefaultImageUrl(
+  config: ServerConfig,
+  project: string,
+  filename: string
+): string {
+  return `${getBaseUrl(config)}/avatars/${project}/traits/shape/${filename}`;
+}
+
 export function buildVariantImageUrl(
   config: ServerConfig,
   project: string,

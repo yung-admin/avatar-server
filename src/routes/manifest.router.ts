@@ -1,7 +1,8 @@
 import { Router, Request } from "express";
 import { ServerConfig, ProjectManifest } from "../types";
 import { Cache } from "../services/cache";
-import { discoverProjects, discoverBases, hasPremades } from "../services/asset-scanner";
+import { discoverProjects, discoverBases, hasPremades, getDefaultImageFilename } from "../services/asset-scanner";
+import { buildDefaultImageUrl } from "../services/image-url";
 
 export function createManifestRouter(config: ServerConfig, cache: Cache): Router {
   const router = Router({ mergeParams: true });
@@ -28,10 +29,14 @@ export function createManifestRouter(config: ServerConfig, cache: Cache): Router
         res.status(404).json({ error: `Project '${project}' not found` });
         return;
       }
+      const defaultFilename = getDefaultImageFilename(config, project);
       manifest = {
         name: project,
         bases,
         hasPremades: hasPremades(config, project),
+        defaultImageUrl: defaultFilename
+          ? buildDefaultImageUrl(config, project, defaultFilename)
+          : null,
       };
       cache.set(cacheKey, manifest);
     }

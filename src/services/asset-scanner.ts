@@ -75,6 +75,13 @@ export function loadCategoryMeta(
   }));
 }
 
+export function getDefaultImageFilename(config: ServerConfig, project: string): string | null {
+  const defaultPath = path.join(
+    config.assetsBasePath, "avatars", project, "traits", "shape", "default.png"
+  );
+  return fs.existsSync(defaultPath) ? "default.png" : null;
+}
+
 export function hasPremades(config: ServerConfig, project: string): boolean {
   const premadesDir = path.join(
     config.assetsBasePath, "avatars", project, "traits", "shape", PREMADES_DIR
