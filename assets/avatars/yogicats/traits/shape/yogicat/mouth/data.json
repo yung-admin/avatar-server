@@ -130,5 +130,27 @@
     "isAnimated": false,
     "isImage": true,
     "training_tags": "mystyle_v1, front_view, yogicat, mouth, serious, black, none, flat_color, solid, no_outline, none, simple, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Bunny",
+    "path": "bunny.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "mouth-bunny",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Happy 2",
+    "path": "happy-2.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "mouth-happy-2",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
   }
 ]

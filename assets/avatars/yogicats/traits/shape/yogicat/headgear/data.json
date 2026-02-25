@@ -190,5 +190,115 @@
     "isAnimated": false,
     "isImage": true,
     "training_tags": "mystyle_v1, front_view, yogicat, headgear, royalcamoubeanie, purple, white, flat_color, camo, thick_outline, none, medium, no_logo, isolated_trait, static, transparent_background, partial_canvas"
+  },
+  {
+    "name": "Blonde Hair",
+    "path": "blondehair.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-blonde-hair",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Boss",
+    "path": "boss.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-boss",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Boss Hair",
+    "path": "bosshair.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-boss-hair",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Choco Hair",
+    "path": "chocohair.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-choco-hair",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Hair Clip Wing Pearl",
+    "path": "hairclipwingpearl.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-hair-clip-wing-pearl",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Lavender Hair",
+    "path": "lavenderhair.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-lavender-hair",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Mint Hair",
+    "path": "minthair.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-mint-hair",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Noodle Boy",
+    "path": "noodleboy.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-noodle-boy",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Pink Hair",
+    "path": "pinkhair.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-pink-hair",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Royal Hair",
+    "path": "royalhair.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "headgear-royal-hair",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
   }
 ]

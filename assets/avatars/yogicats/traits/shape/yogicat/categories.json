@@ -64,5 +64,11 @@
     "order": 9,
     "zIndex": 9,
     "required": false
+  },
+  "suits": {
+    "name": "Suits",
+    "order": 10,
+    "zIndex": 10,
+    "required": false
   }
 }

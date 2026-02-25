@@ -44,7 +44,8 @@ Returns top-level info about your project.
 {
   "name": "myproject",
   "bases": ["human", "robot"],
-  "hasPremades": true
+  "hasPremades": true,
+  "defaultImageUrl": "https://api.yourproject.com/static/default.png"
 }
 ```
 
@@ -53,6 +54,7 @@ Returns top-level info about your project.
 | `name` | `string` | Your project's identifier |
 | `bases` | `string[]` | Available base body types |
 | `hasPremades` | `boolean` | Whether `/premades` has content |
+| `defaultImageUrl` | `string \| null` | URL to the default PFP image, shown when no avatar has been built yet. `null` if not configured. |
 
 ---
 
@@ -354,6 +356,7 @@ interface ProjectManifest {
   name: string;
   bases: string[];
   hasPremades: boolean;
+  defaultImageUrl: string | null;
 }
 ```
 

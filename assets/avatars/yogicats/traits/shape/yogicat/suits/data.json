@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Cute Cat",
+    "path": "cutecat.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "suits-cute-cat",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Royal Panda",
+    "path": "royalpanda-2.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "suits-royal-panda",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  },
+  {
+    "name": "Suite",
+    "path": "suite.png",
+    "chance": 100,
+    "blockedBy": [],
+    "id": "suits-suite",
+    "require": [],
+    "multiTrait": [],
+    "isAnimated": false,
+    "isImage": true
+  }
+]
