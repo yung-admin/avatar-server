@@ -160,6 +160,49 @@ export function getAnimatedTraitDir(
   );
 }
 
+export interface VariantSubCategoryMeta {
+  id: string;
+  name: string;
+  order: number;
+  zIndex: number;
+}
+
+export function loadVariantSubCategoryMeta(
+  config: ServerConfig,
+  project: string,
+  base: string,
+  variantName: string
+): VariantSubCategoryMeta[] {
+  const variantDir = path.join(
+    config.assetsBasePath, "avatars", project, "traits", "shape", base,
+    "variant", variantName
+  );
+  const metaPath = path.join(variantDir, "categories.json");
+  const subdirNames = discoverVariantSubdirs(config, project, base, variantName);
+
+  if (fs.existsSync(metaPath)) {
+    const overrides: Record<string, Partial<VariantSubCategoryMeta>> = JSON.parse(
+      fs.readFileSync(metaPath, "utf-8")
+    );
+    return subdirNames.map((id, i) => {
+      const ov = overrides[id] || {};
+      return {
+        id,
+        name: ov.name ?? titleCase(id),
+        order: ov.order ?? i,
+        zIndex: ov.zIndex ?? i,
+      };
+    }).sort((a, b) => a.order - b.order);
+  }
+
+  return subdirNames.map((id, i) => ({
+    id,
+    name: titleCase(id),
+    order: i,
+    zIndex: i,
+  }));
+}
+
 function titleCase(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }

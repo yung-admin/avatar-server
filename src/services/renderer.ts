@@ -8,6 +8,7 @@ import {
   loadCategoryMeta,
   discoverVariantSubdirs,
   getVariantSubdirDataPath,
+  loadVariantSubCategoryMeta,
 } from "./asset-scanner";
 
 interface ResolvedLayer {
@@ -46,7 +47,7 @@ export function resolveTraitImagePath(
 }
 
 /**
- * Resolve a variant sub-trait ID to its local file path.
+ * Resolve a variant sub-trait ID to its local file path and sub-category.
  */
 export function resolveVariantImagePath(
   config: ServerConfig,
@@ -54,7 +55,7 @@ export function resolveVariantImagePath(
   base: string,
   variant: string,
   traitId: string
-): string | null {
+): { filePath: string; subCategory: string } | null {
   const subdirs = discoverVariantSubdirs(config, project, base, variant);
 
   for (const subdir of subdirs) {
@@ -64,10 +65,11 @@ export function resolveVariantImagePath(
     const raw: RawTraitData[] = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
     const trait = raw.find((t) => t.id === traitId);
     if (trait && trait.isImage) {
-      return path.join(
+      const filePath = path.join(
         config.assetsBasePath, "avatars", project, "traits", "shape",
         base, "variant", variant, subdir, trait.path
       );
+      return { filePath, subCategory: subdir };
     }
   }
 
@@ -95,20 +97,26 @@ export async function compositeAvatar(
 
   const layers: ResolvedLayer[] = [];
 
-  // Resolve variant sub-traits (these go at zIndex 0 — the variant layer)
+  // Resolve variant sub-traits with per-sub-category zIndex offsets
   if (variant && variantTraitIds && variantTraitIds.length > 0) {
     const variantMeta = metaByCategory.get("variant");
-    const variantZIndex = variantMeta?.zIndex ?? 0;
+    const variantBaseZIndex = variantMeta?.zIndex ?? 0;
+    const subCatMeta = loadVariantSubCategoryMeta(config, project, base, variant);
+    const subCatZIndexMap = new Map<string, number>();
+    for (const sc of subCatMeta) {
+      subCatZIndexMap.set(sc.id, sc.zIndex);
+    }
 
     for (const vtId of variantTraitIds) {
-      const filePath = resolveVariantImagePath(config, project, base, variant, vtId);
-      if (!filePath) {
+      const resolved = resolveVariantImagePath(config, project, base, variant, vtId);
+      if (!resolved) {
         throw new Error(`Variant trait not found: ${vtId}`);
       }
-      if (!fs.existsSync(filePath)) {
+      if (!fs.existsSync(resolved.filePath)) {
         throw new Error(`Variant trait image file missing: ${vtId}`);
       }
-      layers.push({ filePath, zIndex: variantZIndex });
+      const subCatZIndex = subCatZIndexMap.get(resolved.subCategory) ?? 0;
+      layers.push({ filePath: resolved.filePath, zIndex: variantBaseZIndex + subCatZIndex * 0.01 });
     }
   }
 

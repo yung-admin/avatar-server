@@ -1,0 +1,4 @@
+{
+  "pattern": { "name": "Pattern", "order": 0, "zIndex": 0 },
+  "arms": { "name": "Arms", "order": 1, "zIndex": 1 }
+}

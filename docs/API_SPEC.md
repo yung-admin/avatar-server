@@ -214,6 +214,8 @@ Variants are alternate body styles for a base (e.g. color schemes, outfits). Eac
       {
         "id": "pattern",
         "name": "Pattern",
+        "order": 0,
+        "zIndex": 0,
         "items": [
           {
             "id": "pattern-snowflake",
@@ -229,6 +231,8 @@ Variants are alternate body styles for a base (e.g. color schemes, outfits). Eac
       {
         "id": "arms",
         "name": "Arms",
+        "order": 1,
+        "zIndex": 1,
         "items": [
           {
             "id": "arms-crossed",
@@ -247,6 +251,8 @@ Variants are alternate body styles for a base (e.g. color schemes, outfits). Eac
 ```
 
 The `subCategories` array is **dynamic** — your project defines what sub-categories each variant has. The editor will render whatever you provide.
+
+Sub-category ordering is controlled by an optional `categories.json` file inside each variant directory (e.g. `variant/ice/categories.json`). This works the same way as the base-level `categories.json` — it defines `order` (display sequence) and `zIndex` (stacking order within the variant layer). If no `categories.json` exists, sub-categories default to alphabetical order.
 
 ---
 
@@ -334,6 +340,8 @@ interface VariantDetail {
 interface VariantSubCategory {
   id: string;         // e.g. "pattern", "arms", "marking" — you decide
   name: string;       // Display name
+  order: number;      // Display order (ascending) — from variant's categories.json
+  zIndex: number;     // Sub-category stacking order within the variant layer
   items: TraitItem[];
 }
 ```
@@ -522,7 +530,7 @@ All trait images are expected to be **1600×1600 RGBA PNGs**, pre-aligned for co
 | 8 | glasses | Over eyes |
 | 9 | headgear | Top of everything |
 
-Variant sub-traits (pattern, arms) are composited at the variant's zIndex (0), making them the bottom-most layers.
+Variant sub-traits are composited at the variant's base zIndex plus a per-sub-category offset (e.g. zIndex 0 + 0.01 × sub-category zIndex), so sub-categories like `pattern` (zIndex 0) render below `arms` (zIndex 1) within the variant layer.
 
 **Error responses**
 

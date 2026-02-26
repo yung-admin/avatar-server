@@ -6,8 +6,8 @@ import {
 import { buildImageUrl, buildPremadeImageUrl, buildFrameUrl, buildVariantImageUrl } from "./image-url";
 import {
   getTraitDataPath, getPremadesDataPath, getVariantSubdirDataPath,
-  getAnimatedTraitDir, discoverAnimatedFrames, discoverVariantSubdirs,
-  loadCategoryMeta,
+  getAnimatedTraitDir, discoverAnimatedFrames,
+  loadCategoryMeta, loadVariantSubCategoryMeta,
 } from "./asset-scanner";
 
 function readDataJson(filePath: string): RawTraitData[] {
@@ -147,16 +147,18 @@ export function loadVariants(
   const rawVariants = readDataJson(variantDataPath);
 
   return rawVariants.map((raw) => {
-    const subdirNames = discoverVariantSubdirs(config, project, base, raw.path);
+    const subCatMeta = loadVariantSubCategoryMeta(config, project, base, raw.path);
 
-    const subCategories: VariantSubCategory[] = subdirNames.map((subdir) => {
-      const subPath = getVariantSubdirDataPath(config, project, base, raw.path, subdir);
+    const subCategories: VariantSubCategory[] = subCatMeta.map((meta) => {
+      const subPath = getVariantSubdirDataPath(config, project, base, raw.path, meta.id);
       const subItems = readDataJson(subPath);
       return {
-        id: subdir,
-        name: subdir.charAt(0).toUpperCase() + subdir.slice(1),
+        id: meta.id,
+        name: meta.name,
+        order: meta.order,
+        zIndex: meta.zIndex,
         items: subItems.map((s) =>
-          rawToVariantSubItem(s, config, project, base, raw.path, subdir)
+          rawToVariantSubItem(s, config, project, base, raw.path, meta.id)
         ),
       };
     });

@@ -80,6 +80,8 @@ export interface ProjectManifest {
 export interface VariantSubCategory {
   id: string;
   name: string;
+  order: number;
+  zIndex: number;
   items: TraitItem[];
 }
 
