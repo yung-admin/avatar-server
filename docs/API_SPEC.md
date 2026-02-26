@@ -516,9 +516,11 @@ All trait images are expected to be **1600×1600 RGBA PNGs**, pre-aligned for co
 
 **Compositing order** is determined by `zIndex` from `categories.json`:
 
+**Note:** Backgrounds are **project-level** resources stored at `traits/background/` (not per-base). They are automatically shared across all bases — every base will include a `background` category with `order: -1` and `zIndex: -1`.
+
 | zIndex | Category | Layer role |
 |--------|----------|------------|
-| -1 | background | Background image — bottom-most layer |
+| -1 | background | Background image — bottom-most layer (project-level, shared across all bases) |
 | 0 | variant | Body base (pattern + arms) |
 | 1 | ears | Behind/part of head |
 | 2 | top | Clothing on body |

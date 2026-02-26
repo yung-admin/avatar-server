@@ -5,6 +5,7 @@ import { ServerConfig, RawTraitData, CategoryMeta } from "../types";
 import {
   discoverCategoryIds,
   getTraitDataPath,
+  getBackgroundDataPath,
   loadCategoryMeta,
   discoverVariantSubdirs,
   getVariantSubdirDataPath,
@@ -40,6 +41,19 @@ export function resolveTraitImagePath(
         base, cat, trait.path
       );
       return { filePath, category: cat };
+    }
+  }
+
+  // Fallback: check project-level background
+  const bgDataPath = getBackgroundDataPath(config, project);
+  if (fs.existsSync(bgDataPath)) {
+    const bgRaw: RawTraitData[] = JSON.parse(fs.readFileSync(bgDataPath, "utf-8"));
+    const bgTrait = bgRaw.find((t) => t.id === traitId);
+    if (bgTrait && bgTrait.isImage && !bgTrait.isAnimated) {
+      const filePath = path.join(
+        config.assetsBasePath, "avatars", project, "traits", "background", bgTrait.path
+      );
+      return { filePath, category: "background" };
     }
   }
 

@@ -3,10 +3,11 @@ import {
   ServerConfig, RawTraitData, TraitItem, CategoryResponse, CategoryMeta,
   PremadeItem, VariantDetail, VariantSubCategory, Frame,
 } from "../types";
-import { buildImageUrl, buildPremadeImageUrl, buildFrameUrl, buildVariantImageUrl } from "./image-url";
+import { buildImageUrl, buildPremadeImageUrl, buildFrameUrl, buildVariantImageUrl, buildBackgroundImageUrl, buildBackgroundFrameUrl } from "./image-url";
 import {
   getTraitDataPath, getPremadesDataPath, getVariantSubdirDataPath,
   getAnimatedTraitDir, discoverAnimatedFrames,
+  getBackgroundDataPath, getBackgroundAnimatedDir,
   loadCategoryMeta, loadVariantSubCategoryMeta,
 } from "./asset-scanner";
 
@@ -58,6 +59,45 @@ function rawToTraitItem(
   return item;
 }
 
+function rawToBackgroundItem(
+  raw: RawTraitData,
+  config: ServerConfig,
+  project: string
+): TraitItem {
+  const item: TraitItem = {
+    id: raw.id,
+    name: raw.name,
+    isAnimated: raw.isAnimated,
+    imageUrl: null,
+    blockedBy: raw.blockedBy,
+    require: raw.require,
+    multiTrait: raw.multiTrait,
+    meta: buildMeta(raw),
+  };
+
+  if (raw.isAnimated) {
+    const animDir = getBackgroundAnimatedDir(config, project, raw.path);
+    const frameFiles = discoverAnimatedFrames(animDir);
+    item.frames = frameFiles.map((f): Frame => ({
+      index: parseInt(f),
+      imageUrl: buildBackgroundFrameUrl(config, project, raw.path, f),
+    }));
+  } else if (raw.isImage) {
+    item.imageUrl = buildBackgroundImageUrl(config, project, raw.path);
+  }
+
+  return item;
+}
+
+function loadBackgroundItems(
+  config: ServerConfig,
+  project: string
+): TraitItem[] {
+  const dataPath = getBackgroundDataPath(config, project);
+  const rawItems = readDataJson(dataPath);
+  return rawItems.map((raw) => rawToBackgroundItem(raw, config, project));
+}
+
 function rawToVariantSubItem(
   raw: RawTraitData,
   config: ServerConfig,
@@ -90,6 +130,9 @@ export function loadCategoryItems(
   base: string,
   categoryId: string
 ): TraitItem[] {
+  if (categoryId === "background") {
+    return loadBackgroundItems(config, project);
+  }
   const dataPath = getTraitDataPath(config, project, base, categoryId);
   const rawItems = readDataJson(dataPath);
   return rawItems.map((raw) => rawToTraitItem(raw, config, project, base, categoryId));

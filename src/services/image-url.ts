@@ -44,6 +44,23 @@ export function buildDefaultImageUrl(
   return `${getBaseUrl(config)}/avatars/${project}/traits/shape/${filename}`;
 }
 
+export function buildBackgroundImageUrl(
+  config: ServerConfig,
+  project: string,
+  filename: string
+): string {
+  return `${getBaseUrl(config)}/avatars/${project}/traits/background/${filename}`;
+}
+
+export function buildBackgroundFrameUrl(
+  config: ServerConfig,
+  project: string,
+  traitFolder: string,
+  frameFilename: string
+): string {
+  return `${getBaseUrl(config)}/avatars/${project}/traits/background/${traitFolder}/${frameFilename}`;
+}
+
 export function buildVariantImageUrl(
   config: ServerConfig,
   project: string,

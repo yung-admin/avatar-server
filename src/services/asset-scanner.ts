@@ -48,12 +48,14 @@ export function loadCategoryMeta(
 
   const categoryIds = discoverCategoryIds(config, project, base);
 
+  let categories: CategoryMeta[];
+
   // If a categories.json override file exists, use it
   if (fs.existsSync(metaPath)) {
     const overrides: Record<string, Partial<CategoryMeta>> = JSON.parse(
       fs.readFileSync(metaPath, "utf-8")
     );
-    return categoryIds.map((id, i) => {
+    categories = categoryIds.map((id, i) => {
       const ov = overrides[id] || {};
       return {
         id,
@@ -62,17 +64,53 @@ export function loadCategoryMeta(
         zIndex: ov.zIndex ?? i,
         required: ov.required ?? false,
       };
-    }).sort((a, b) => a.order - b.order);
+    });
+  } else {
+    // Default: auto-generate from directory names
+    categories = categoryIds.map((id, i) => ({
+      id,
+      name: titleCase(id),
+      order: i,
+      zIndex: i,
+      required: false,
+    }));
   }
 
-  // Default: auto-generate from directory names
-  return categoryIds.map((id, i) => ({
-    id,
-    name: titleCase(id),
-    order: i,
-    zIndex: i,
-    required: false,
-  }));
+  // Inject project-level background if it exists and isn't already in the list
+  if (hasProjectBackground(config, project) && !categories.some((c) => c.id === "background")) {
+    categories.push({
+      id: "background",
+      name: "Background",
+      order: -1,
+      zIndex: -1,
+      required: false,
+    });
+  }
+
+  return categories.sort((a, b) => a.order - b.order);
+}
+
+export function getBackgroundDataPath(config: ServerConfig, project: string): string {
+  return path.join(
+    config.assetsBasePath, "avatars", project, "traits", "background", "data.json"
+  );
+}
+
+export function getBackgroundAnimatedDir(
+  config: ServerConfig,
+  project: string,
+  traitPath: string
+): string {
+  return path.join(
+    config.assetsBasePath, "avatars", project, "traits", "background", traitPath
+  );
+}
+
+export function hasProjectBackground(config: ServerConfig, project: string): boolean {
+  const bgDir = path.join(
+    config.assetsBasePath, "avatars", project, "traits", "background"
+  );
+  return fs.existsSync(bgDir);
 }
 
 export function getDefaultImageFilename(config: ServerConfig, project: string): string | null {
