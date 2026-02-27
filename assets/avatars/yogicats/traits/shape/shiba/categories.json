@@ -3,60 +3,70 @@
     "name": "Variant",
     "order": 0,
     "zIndex": 0,
-    "required": true
+    "required": true,
+    "animation": "fade"
   },
   "ears": {
     "name": "Ears",
     "order": 1,
     "zIndex": 1,
-    "required": false
+    "required": false,
+    "animation": "fade"
   },
   "top": {
     "name": "Clothing",
     "order": 2,
     "zIndex": 2,
-    "required": false
+    "required": false,
+    "animation": "leftToRight"
   },
   "chain": {
     "name": "Chain",
     "order": 3,
     "zIndex": 3,
-    "required": false
+    "required": false,
+    "animation": "leftToRight"
   },
   "nose": {
     "name": "Nose",
     "order": 4,
     "zIndex": 4,
-    "required": false
+    "required": false,
+    "animation": "fade"
   },
   "mouth": {
     "name": "Mouth",
     "order": 5,
     "zIndex": 5,
-    "required": false
+    "required": false,
+    "animation": "fade"
   },
   "eyes": {
     "name": "Eyes",
     "order": 6,
     "zIndex": 6,
-    "required": true
+    "required": true,
+    "animation": "fade"
   },
   "faceart": {
     "name": "Face Art",
     "order": 7,
     "zIndex": 7,
-    "required": false
+    "required": false,
+    "animation": "fade"
   },
   "glasses": {
     "name": "Glasses",
     "order": 8,
     "zIndex": 8,
-    "required": false
+    "required": false,
+    "animation": "leftToRight"
   },
   "headgear": {
     "name": "Headgear",
     "order": 9,
     "zIndex": 9,
-    "required": false
+    "required": false,
+    "animation": "leftToRight"
   }
 }

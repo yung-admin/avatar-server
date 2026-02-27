@@ -1,0 +1,20 @@
+{
+  "variant": "snow",
+  "variantTraits": {
+    "pattern": "yogicat-snow-pattern-none",
+    "arms": null
+  },
+  "traits": {
+    "background": null,
+    "ears": null,
+    "top": null,
+    "chain": null,
+    "nose": "nose-boss",
+    "mouth": "mouth-serious",
+    "eyes": "eyes-boss",
+    "faceart": null,
+    "glasses": null,
+    "headgear": null,
+    "suits": null
+  }
+}

@@ -61,6 +61,20 @@ export function buildBackgroundFrameUrl(
   return `${getBaseUrl(config)}/avatars/${project}/traits/background/${traitFolder}/${frameFilename}`;
 }
 
+export function buildCategoryIconUrl(
+  config: ServerConfig,
+  iconName: string
+): string {
+  return `${getBaseUrl(config)}/icons/categories/${iconName}.svg`;
+}
+
+export function buildUtilityIconUrl(
+  config: ServerConfig,
+  iconName: string
+): string {
+  return `${getBaseUrl(config)}/icons/utility/${iconName}.svg`;
+}
+
 export function buildVariantImageUrl(
   config: ServerConfig,
   project: string,

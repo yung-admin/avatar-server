@@ -1,7 +1,7 @@
 import { Router, Request } from "express";
 import { ServerConfig, ProjectManifest } from "../types";
 import { Cache } from "../services/cache";
-import { discoverProjects, discoverBases, hasPremades, getDefaultImageFilename } from "../services/asset-scanner";
+import { discoverProjects, discoverBases, hasPremades, getDefaultImageFilename, getProjectDefaultBase } from "../services/asset-scanner";
 import { buildDefaultImageUrl } from "../services/image-url";
 
 export function createManifestRouter(config: ServerConfig, cache: Cache): Router {
@@ -33,6 +33,7 @@ export function createManifestRouter(config: ServerConfig, cache: Cache): Router
       manifest = {
         name: project,
         bases,
+        defaultBase: getProjectDefaultBase(config, project),
         hasPremades: hasPremades(config, project),
         defaultImageUrl: defaultFilename
           ? buildDefaultImageUrl(config, project, defaultFilename)

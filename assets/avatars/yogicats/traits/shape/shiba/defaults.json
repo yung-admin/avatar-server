@@ -1,0 +1,19 @@
+{
+  "variant": "OG",
+  "variantTraits": {
+    "pattern": "shiba-OG-pattern-none",
+    "arms": null
+  },
+  "traits": {
+    "background": null,
+    "ears": null,
+    "top": null,
+    "chain": null,
+    "nose": "shiba-nose-boss",
+    "mouth": "mouth-og",
+    "eyes": null,
+    "faceart": null,
+    "glasses": null,
+    "headgear": null
+  }
+}

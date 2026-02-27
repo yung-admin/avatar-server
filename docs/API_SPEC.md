@@ -14,7 +14,8 @@ The editor fetches data in this order:
 2. `GET /bases/:base` — get category list with rendering metadata
 3. `GET /bases/:base/tree` — load all traits at once _(or fetch categories individually)_
 4. `GET /bases/:base/variants` — load variant options
-5. `GET /premades` — load premade PFPs _(if `hasPremades` is true)_
+5. `GET /icons` — discover all available UI icons
+6. `GET /premades` — load premade PFPs _(if `hasPremades` is true)_
 
 All responses must be **JSON** with `Content-Type: application/json`.
 
@@ -44,6 +45,7 @@ Returns top-level info about your project.
 {
   "name": "myproject",
   "bases": ["human", "robot"],
+  "defaultBase": "human",
   "hasPremades": true,
   "defaultImageUrl": "https://api.yourproject.com/static/default.png"
 }
@@ -53,6 +55,7 @@ Returns top-level info about your project.
 |-------|------|-------------|
 | `name` | `string` | Your project's identifier |
 | `bases` | `string[]` | Available base body types |
+| `defaultBase` | `string \| null` | The recommended base to load initially. `null` if not configured. |
 | `hasPremades` | `boolean` | Whether `/premades` has content |
 | `defaultImageUrl` | `string \| null` | URL to the default PFP image, shown when no avatar has been built yet. `null` if not configured. |
 
@@ -81,13 +84,28 @@ Returns a base body type with its ordered list of trait categories and rendering
   "id": "human",
   "name": "Human",
   "categories": [
-    { "id": "skin",     "name": "Skin Tone", "order": 0, "zIndex": 0, "required": true  },
-    { "id": "eyes",     "name": "Eyes",      "order": 1, "zIndex": 1, "required": true  },
-    { "id": "hair",     "name": "Hair",      "order": 2, "zIndex": 5, "required": false },
-    { "id": "hat",      "name": "Hat",       "order": 3, "zIndex": 6, "required": false },
-    { "id": "glasses",  "name": "Glasses",   "order": 4, "zIndex": 7, "required": false },
-    { "id": "variant",  "name": "Variant",   "order": 5, "zIndex": -1, "required": true }
-  ]
+    { "id": "skin",     "name": "Skin Tone", "order": 0, "zIndex": 0, "required": true,  "animation": "fade" },
+    { "id": "eyes",     "name": "Eyes",      "order": 1, "zIndex": 1, "required": true,  "animation": "fade" },
+    { "id": "hair",     "name": "Hair",      "order": 2, "zIndex": 5, "required": false, "animation": "fade" },
+    { "id": "hat",      "name": "Hat",       "order": 3, "zIndex": 6, "required": false, "animation": "leftToRight" },
+    { "id": "glasses",  "name": "Glasses",   "order": 4, "zIndex": 7, "required": false, "animation": "leftToRight" },
+    { "id": "variant",  "name": "Variant",   "order": 5, "zIndex": -1, "required": true, "animation": "fade" }
+  ],
+  "defaults": {
+    "variant": "snow",
+    "variantTraits": {
+      "pattern": "yogicat-snow-pattern-none",
+      "arms": null
+    },
+    "traits": {
+      "eyes": "eyes-boss",
+      "nose": "nose-boss",
+      "mouth": "mouth-serious",
+      "hair": null,
+      "hat": null,
+      "glasses": null
+    }
+  }
 }
 ```
 
@@ -100,6 +118,18 @@ Returns a base body type with its ordered list of trait categories and rendering
 | `order` | `number` | Display order in the editor UI (ascending) |
 | `zIndex` | `number` | Layer stacking order when compositing the avatar. Higher values render on top. |
 | `required` | `boolean` | If `true`, the user must select a trait from this category |
+| `iconUrl` | `string?` | URL to the category's SVG icon for the editor UI. Optional. |
+| `animation` | `"fade" \| "leftToRight"` | Preferred transition animation when switching traits in this category. Optional. |
+
+#### Base Defaults
+
+The `defaults` object tells the editor which traits to pre-select when the user first opens a base.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `variant` | `string \| null` | Default variant name to select (e.g. `"snow"`). `null` for no default. |
+| `variantTraits` | `Record<string, string \| null>` | Default variant sub-category trait IDs. Keys are sub-category IDs, values are trait IDs or `null`. |
+| `traits` | `Record<string, string \| null>` | Default trait IDs per category. Keys are category IDs, values are trait IDs or `null` for no selection. |
 
 ---
 
@@ -216,6 +246,7 @@ Variants are alternate body styles for a base (e.g. color schemes, outfits). Eac
         "name": "Pattern",
         "order": 0,
         "zIndex": 0,
+        "animation": "fade",
         "items": [
           {
             "id": "pattern-snowflake",
@@ -233,6 +264,7 @@ Variants are alternate body styles for a base (e.g. color schemes, outfits). Eac
         "name": "Arms",
         "order": 1,
         "zIndex": 1,
+        "animation": "fade",
         "items": [
           {
             "id": "arms-crossed",
@@ -285,6 +317,38 @@ Pre-built, non-composable avatar images (e.g. legendary characters, special edit
 
 ---
 
+### `GET /icons` — Available Icons
+
+Returns all available UI icons grouped by type. The editor can use these to display category icons, visibility toggles, save buttons, etc.
+
+**Response**
+
+```json
+{
+  "categories": {
+    "background": "https://api.yourproject.com/static/icons/categories/background.svg",
+    "variant": "https://api.yourproject.com/static/icons/categories/variant.svg",
+    "ears": "https://api.yourproject.com/static/icons/categories/ears.svg",
+    "eyes": "https://api.yourproject.com/static/icons/categories/eyes.svg"
+  },
+  "utility": {
+    "eye": "https://api.yourproject.com/static/icons/utility/eye.svg",
+    "save": "https://api.yourproject.com/static/icons/utility/save.svg",
+    "close": "https://api.yourproject.com/static/icons/utility/close.svg",
+    "template": "https://api.yourproject.com/static/icons/utility/template.svg"
+  }
+}
+```
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `categories` | `Record<string, string>` | Map of category/sub-category icon name to SVG URL |
+| `utility` | `Record<string, string>` | Map of utility icon name to SVG URL |
+
+Icons are also available directly at `/static/icons/categories/{name}.svg` and `/static/icons/utility/{name}.svg`.
+
+---
+
 ## Data Types Reference
 
 ### TraitItem
@@ -319,12 +383,16 @@ interface Frame {
 ### CategoryMeta
 
 ```typescript
+type AnimationType = "fade" | "leftToRight";
+
 interface CategoryMeta {
-  id: string;        // Category identifier, used in URLs
-  name: string;      // Display name
-  order: number;     // UI display order (ascending)
-  zIndex: number;    // Compositing layer order (higher = on top)
-  required: boolean; // Must the user pick a trait from this category?
+  id: string;                    // Category identifier, used in URLs
+  name: string;                  // Display name
+  order: number;                 // UI display order (ascending)
+  zIndex: number;                // Compositing layer order (higher = on top)
+  required: boolean;             // Must the user pick a trait from this category?
+  iconUrl?: string;              // URL to the category's SVG icon
+  animation?: AnimationType;     // Preferred transition animation
 }
 ```
 
@@ -338,10 +406,12 @@ interface VariantDetail {
 }
 
 interface VariantSubCategory {
-  id: string;         // e.g. "pattern", "arms", "marking" — you decide
-  name: string;       // Display name
-  order: number;      // Display order (ascending) — from variant's categories.json
-  zIndex: number;     // Sub-category stacking order within the variant layer
+  id: string;                    // e.g. "pattern", "arms", "marking" — you decide
+  name: string;                  // Display name
+  order: number;                 // Display order (ascending) — from variant's categories.json
+  zIndex: number;                // Sub-category stacking order within the variant layer
+  iconUrl?: string;              // URL to the sub-category's SVG icon
+  animation?: AnimationType;     // Preferred transition animation
   items: TraitItem[];
 }
 ```
@@ -357,12 +427,34 @@ interface PremadeItem {
 }
 ```
 
+### BaseDefaults
+
+```typescript
+interface BaseDefaults {
+  variant: string | null;                      // Default variant name (e.g. "snow")
+  variantTraits: Record<string, string | null>; // Sub-category ID → default trait ID
+  traits: Record<string, string | null>;        // Category ID → default trait ID
+}
+```
+
+### BaseInfo
+
+```typescript
+interface BaseInfo {
+  id: string;
+  name: string;
+  categories: CategoryMeta[];
+  defaults: BaseDefaults;
+}
+```
+
 ### ProjectManifest
 
 ```typescript
 interface ProjectManifest {
   name: string;
   bases: string[];
+  defaultBase: string | null;
   hasPremades: boolean;
   defaultImageUrl: string | null;
 }
@@ -476,6 +568,16 @@ Returns server status. **No authentication required.** Use this for load balance
 
 ---
 
+## API Documentation
+
+### `GET /docs`
+
+Returns this API specification as a Markdown file. **No authentication required.** Use this to allow agents and tools to read the spec programmatically.
+
+**Response:** `text/markdown` body containing the contents of `API_SPEC.md`.
+
+---
+
 ## Response Compression
 
 All JSON responses support **gzip compression**. Clients that send `Accept-Encoding: gzip` will receive compressed responses with `Content-Encoding: gzip` header. This significantly reduces payload size for large endpoints like `/bases/:base/tree`.
@@ -557,6 +659,7 @@ Variant sub-traits are composited at the variant's base zIndex plus a per-sub-ca
 | Endpoint | Method | Response Type | Auth Required |
 |----------|--------|--------------|---------------|
 | `/health` | GET | `{ status: "ok" }` | No |
+| `/docs` | GET | `text/markdown` | No |
 | `/` | GET | `ProjectManifest` | Yes |
 | `/bases` | GET | `string[]` | Yes |
 | `/bases/:base` | GET | `BaseInfo` | Yes |
@@ -565,5 +668,6 @@ Variant sub-traits are composited at the variant's base zIndex plus a per-sub-ca
 | `/bases/:base/categories/:cat/:id` | GET | `TraitItem` | Yes |
 | `/bases/:base/variants` | GET | `VariantDetail[]` | Yes |
 | `/bases/:base/variants/:variant` | GET | `VariantDetail` | Yes |
+| `/icons` | GET | `{ categories, utility }` | Yes |
 | `/premades` | GET | `PremadeItem[]` | Only if `hasPremades: true` |
 | `/render` | POST | `image/png` binary | Yes |

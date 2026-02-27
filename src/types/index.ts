@@ -49,12 +49,17 @@ export interface TraitItem {
   meta?: Record<string, unknown>;
 }
 
+export type AnimationType = "fade" | "leftToRight";
+
 export interface CategoryMeta {
   id: string;
   name: string;
   order: number;
   zIndex: number;
   required: boolean;
+  iconUrl?: string;
+  defaultTraitId?: string | null;
+  animation?: AnimationType;
 }
 
 export interface CategoryResponse {
@@ -64,15 +69,23 @@ export interface CategoryResponse {
   items: TraitItem[];
 }
 
+export interface BaseDefaults {
+  traits: Record<string, string | null>;
+  variant: string | null;
+  variantTraits: Record<string, string | null>;
+}
+
 export interface BaseInfo {
   id: string;
   name: string;
   categories: CategoryMeta[];
+  defaults: BaseDefaults;
 }
 
 export interface ProjectManifest {
   name: string;
   bases: string[];
+  defaultBase: string | null;
   hasPremades: boolean;
   defaultImageUrl: string | null;
 }
@@ -82,6 +95,9 @@ export interface VariantSubCategory {
   name: string;
   order: number;
   zIndex: number;
+  iconUrl?: string;
+  defaultTraitId?: string | null;
+  animation?: AnimationType;
   items: TraitItem[];
 }
 

@@ -1,4 +1,4 @@
 {
-  "pattern": { "name": "Pattern", "order": 0, "zIndex": 0 },
-  "arms": { "name": "Arms", "order": 1, "zIndex": 1 }
+  "pattern": { "name": "Pattern", "order": 0, "zIndex": 0, "animation": "fade" },
+  "arms": { "name": "Arms", "order": 1, "zIndex": 1, "animation": "fade" }
 }

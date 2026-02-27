@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
-import { ServerConfig, CategoryMeta } from "../types";
+import { ServerConfig, CategoryMeta, AnimationType, BaseDefaults } from "../types";
+import { buildCategoryIconUrl } from "./image-url";
 
 const PREMADES_DIR = "Legends";
 
@@ -57,13 +58,16 @@ export function loadCategoryMeta(
     );
     categories = categoryIds.map((id, i) => {
       const ov = overrides[id] || {};
-      return {
+      const cat: CategoryMeta = {
         id,
         name: ov.name ?? titleCase(id),
         order: ov.order ?? i,
         zIndex: ov.zIndex ?? i,
         required: ov.required ?? false,
+        iconUrl: buildCategoryIconUrl(config, id),
       };
+      if (ov.animation) cat.animation = ov.animation as AnimationType;
+      return cat;
     });
   } else {
     // Default: auto-generate from directory names
@@ -73,6 +77,7 @@ export function loadCategoryMeta(
       order: i,
       zIndex: i,
       required: false,
+      iconUrl: buildCategoryIconUrl(config, id),
     }));
   }
 
@@ -84,6 +89,8 @@ export function loadCategoryMeta(
       order: -1,
       zIndex: -1,
       required: false,
+      iconUrl: buildCategoryIconUrl(config, "background"),
+      animation: "fade",
     });
   }
 
@@ -203,6 +210,8 @@ export interface VariantSubCategoryMeta {
   name: string;
   order: number;
   zIndex: number;
+  iconUrl?: string;
+  animation?: AnimationType;
 }
 
 export function loadVariantSubCategoryMeta(
@@ -224,12 +233,15 @@ export function loadVariantSubCategoryMeta(
     );
     return subdirNames.map((id, i) => {
       const ov = overrides[id] || {};
-      return {
+      const meta: VariantSubCategoryMeta = {
         id,
         name: ov.name ?? titleCase(id),
         order: ov.order ?? i,
         zIndex: ov.zIndex ?? i,
+        iconUrl: buildCategoryIconUrl(config, id),
       };
+      if (ov.animation) meta.animation = ov.animation as AnimationType;
+      return meta;
     }).sort((a, b) => a.order - b.order);
   }
 
@@ -238,7 +250,42 @@ export function loadVariantSubCategoryMeta(
     name: titleCase(id),
     order: i,
     zIndex: i,
+    iconUrl: buildCategoryIconUrl(config, id),
   }));
+}
+
+export function loadBaseDefaults(
+  config: ServerConfig,
+  project: string,
+  base: string
+): BaseDefaults {
+  const defaultsPath = path.join(
+    config.assetsBasePath, "avatars", project, "traits", "shape", base, "defaults.json"
+  );
+
+  if (fs.existsSync(defaultsPath)) {
+    const raw = JSON.parse(fs.readFileSync(defaultsPath, "utf-8"));
+    return {
+      variant: raw.variant ?? null,
+      variantTraits: raw.variantTraits ?? {},
+      traits: raw.traits ?? {},
+    };
+  }
+
+  return { variant: null, variantTraits: {}, traits: {} };
+}
+
+export function getProjectDefaultBase(config: ServerConfig, project: string): string | null {
+  const manifestPath = path.join(
+    config.assetsBasePath, "avatars", project, "manifest.json"
+  );
+
+  if (fs.existsSync(manifestPath)) {
+    const raw = JSON.parse(fs.readFileSync(manifestPath, "utf-8"));
+    return raw.defaultBase ?? null;
+  }
+
+  return null;
 }
 
 function titleCase(s: string): string {

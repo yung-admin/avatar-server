@@ -1,7 +1,7 @@
 import { Router, Request } from "express";
 import { ServerConfig, BaseInfo } from "../types";
 import { Cache } from "../services/cache";
-import { discoverBases, loadCategoryMeta } from "../services/asset-scanner";
+import { discoverBases, loadCategoryMeta, loadBaseDefaults } from "../services/asset-scanner";
 
 export function createBaseRouter(config: ServerConfig, cache: Cache): Router {
   const router = Router({ mergeParams: true });
@@ -29,7 +29,8 @@ export function createBaseRouter(config: ServerConfig, cache: Cache): Router {
         res.status(404).json({ error: `Base '${base}' not found in project '${project}'` });
         return;
       }
-      info = { id: base, name: base.charAt(0).toUpperCase() + base.slice(1), categories };
+      const defaults = loadBaseDefaults(config, project, base);
+      info = { id: base, name: base.charAt(0).toUpperCase() + base.slice(1), categories, defaults };
       cache.set(cacheKey, info);
     }
     res.json(info);

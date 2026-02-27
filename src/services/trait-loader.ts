@@ -195,7 +195,7 @@ export function loadVariants(
     const subCategories: VariantSubCategory[] = subCatMeta.map((meta) => {
       const subPath = getVariantSubdirDataPath(config, project, base, raw.path, meta.id);
       const subItems = readDataJson(subPath);
-      return {
+      const subCat: VariantSubCategory = {
         id: meta.id,
         name: meta.name,
         order: meta.order,
@@ -204,6 +204,9 @@ export function loadVariants(
           rawToVariantSubItem(s, config, project, base, raw.path, meta.id)
         ),
       };
+      if (meta.iconUrl) subCat.iconUrl = meta.iconUrl;
+      if (meta.animation) subCat.animation = meta.animation;
+      return subCat;
     });
 
     return { id: raw.id, name: raw.name, subCategories };
