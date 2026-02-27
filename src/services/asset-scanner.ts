@@ -17,10 +17,16 @@ export function discoverProjects(config: ServerConfig): string[] {
 export function discoverBases(config: ServerConfig, project: string): string[] {
   const basesDir = path.join(config.assetsBasePath, "avatars", project, "traits", "shape");
   if (!fs.existsSync(basesDir)) return [];
+  const defaultBase = getProjectDefaultBase(config, project);
   return fs
     .readdirSync(basesDir, { withFileTypes: true })
     .filter((d) => d.isDirectory() && d.name !== PREMADES_DIR)
-    .map((d) => d.name);
+    .map((d) => d.name)
+    .sort((a, b) => {
+      if (a === defaultBase) return -1;
+      if (b === defaultBase) return 1;
+      return a.localeCompare(b);
+    });
 }
 
 export function discoverCategoryIds(
