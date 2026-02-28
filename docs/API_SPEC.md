@@ -343,7 +343,8 @@ Returns all available UI icons grouped by type. The editor can use these to disp
     "eye": "https://api.yourproject.com/static/icons/utility/eye.svg",
     "save": "https://api.yourproject.com/static/icons/utility/save.svg",
     "close": "https://api.yourproject.com/static/icons/utility/close.svg",
-    "template": "https://api.yourproject.com/static/icons/utility/template.svg"
+    "template": "https://api.yourproject.com/static/icons/utility/template.svg",
+    "random": "https://api.yourproject.com/static/icons/utility/random.svg"
   }
 }
 ```
