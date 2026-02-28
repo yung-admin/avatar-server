@@ -84,12 +84,12 @@ Returns a base body type with its ordered list of trait categories and rendering
   "id": "human",
   "name": "Human",
   "categories": [
-    { "id": "skin",     "name": "Skin Tone", "order": 0, "zIndex": 0, "required": true,  "animation": "fade" },
-    { "id": "eyes",     "name": "Eyes",      "order": 1, "zIndex": 1, "required": true,  "animation": "fade" },
-    { "id": "hair",     "name": "Hair",      "order": 2, "zIndex": 5, "required": false, "animation": "fade" },
-    { "id": "hat",      "name": "Hat",       "order": 3, "zIndex": 6, "required": false, "animation": "leftToRight" },
-    { "id": "glasses",  "name": "Glasses",   "order": 4, "zIndex": 7, "required": false, "animation": "leftToRight" },
-    { "id": "variant",  "name": "Variant",   "order": 5, "zIndex": -1, "required": true, "animation": "fade" }
+    { "id": "skin",     "name": "Skin Tone", "order": 0, "zIndex": 0, "required": true,  "defaultTraitId": "skin-light", "animation": "fade" },
+    { "id": "eyes",     "name": "Eyes",      "order": 1, "zIndex": 1, "required": true,  "defaultTraitId": "eyes-boss",  "animation": "fade" },
+    { "id": "hair",     "name": "Hair",      "order": 2, "zIndex": 5, "required": false, "defaultTraitId": null,         "animation": "fade" },
+    { "id": "hat",      "name": "Hat",       "order": 3, "zIndex": 6, "required": false, "defaultTraitId": null,         "animation": "leftToRight" },
+    { "id": "glasses",  "name": "Glasses",   "order": 4, "zIndex": 7, "required": false, "defaultTraitId": null,         "animation": "leftToRight" },
+    { "id": "variant",  "name": "Variant",   "order": 5, "zIndex": -1, "required": true, "defaultTraitId": null,         "animation": "fade" }
   ],
   "defaults": {
     "variant": "snow",
@@ -119,6 +119,7 @@ Returns a base body type with its ordered list of trait categories and rendering
 | `zIndex` | `number` | Layer stacking order when compositing the avatar. Higher values render on top. |
 | `required` | `boolean` | If `true`, the user must select a trait from this category |
 | `iconUrl` | `string?` | URL to the category's SVG icon for the editor UI. Optional. |
+| `defaultTraitId` | `string \| null` | The default trait ID for this category, from the base's `defaults.json`. `null` means no default. |
 | `animation` | `"fade" \| "leftToRight"` | Preferred transition animation when switching traits in this category. Optional. |
 
 #### Base Defaults
@@ -277,7 +278,11 @@ Variants are alternate body styles for a base (e.g. color schemes, outfits). Eac
           }
         ]
       }
-    ]
+    ],
+    "defaults": {
+      "pattern": "yogicat-ice-pattern-none",
+      "arms": null
+    }
   }
 ]
 ```
@@ -392,6 +397,7 @@ interface CategoryMeta {
   zIndex: number;                // Compositing layer order (higher = on top)
   required: boolean;             // Must the user pick a trait from this category?
   iconUrl?: string;              // URL to the category's SVG icon
+  defaultTraitId?: string | null; // Default trait ID for this category
   animation?: AnimationType;     // Preferred transition animation
 }
 ```
@@ -403,6 +409,7 @@ interface VariantDetail {
   id: string;
   name: string;
   subCategories: VariantSubCategory[];
+  defaults: Record<string, string | null>; // subCategoryId → default traitId
 }
 
 interface VariantSubCategory {

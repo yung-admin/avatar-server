@@ -105,6 +105,7 @@ export interface VariantDetail {
   id: string;
   name: string;
   subCategories: VariantSubCategory[];
+  defaults: Record<string, string | null>;
 }
 
 export interface PremadeItem {

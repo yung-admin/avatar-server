@@ -100,6 +100,12 @@ export function loadCategoryMeta(
     });
   }
 
+  // Populate defaultTraitId from base defaults
+  const defaults = loadBaseDefaults(config, project, base);
+  for (const cat of categories) {
+    cat.defaultTraitId = defaults.traits[cat.id] ?? null;
+  }
+
   return categories.sort((a, b) => a.order - b.order);
 }
 
@@ -258,6 +264,24 @@ export function loadVariantSubCategoryMeta(
     zIndex: i,
     iconUrl: buildCategoryIconUrl(config, id),
   }));
+}
+
+export function loadVariantDefaults(
+  config: ServerConfig,
+  project: string,
+  base: string,
+  variantName: string
+): Record<string, string | null> {
+  const defaultsPath = path.join(
+    config.assetsBasePath, "avatars", project, "traits", "shape", base,
+    "variant", variantName, "defaults.json"
+  );
+
+  if (fs.existsSync(defaultsPath)) {
+    return JSON.parse(fs.readFileSync(defaultsPath, "utf-8"));
+  }
+
+  return {};
 }
 
 export function loadBaseDefaults(

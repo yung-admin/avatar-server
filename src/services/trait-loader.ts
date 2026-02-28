@@ -8,7 +8,7 @@ import {
   getTraitDataPath, getPremadesDataPath, getVariantSubdirDataPath,
   getAnimatedTraitDir, discoverAnimatedFrames,
   getBackgroundDataPath, getBackgroundAnimatedDir,
-  loadCategoryMeta, loadVariantSubCategoryMeta,
+  loadCategoryMeta, loadVariantSubCategoryMeta, loadVariantDefaults,
 } from "./asset-scanner";
 
 function readDataJson(filePath: string): RawTraitData[] {
@@ -209,7 +209,8 @@ export function loadVariants(
       return subCat;
     });
 
-    return { id: raw.id, name: raw.name, subCategories };
+    const defaults = loadVariantDefaults(config, project, base, raw.path);
+    return { id: raw.id, name: raw.name, subCategories, defaults };
   });
 }
 
