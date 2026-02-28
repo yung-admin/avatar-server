@@ -247,6 +247,7 @@ Variants are alternate body styles for a base (e.g. color schemes, outfits). Eac
         "name": "Pattern",
         "order": 0,
         "zIndex": 0,
+        "required": true,
         "animation": "fade",
         "items": [
           {
@@ -265,6 +266,7 @@ Variants are alternate body styles for a base (e.g. color schemes, outfits). Eac
         "name": "Arms",
         "order": 1,
         "zIndex": 1,
+        "required": false,
         "animation": "fade",
         "items": [
           {
@@ -417,6 +419,7 @@ interface VariantSubCategory {
   name: string;                  // Display name
   order: number;                 // Display order (ascending) — from variant's categories.json
   zIndex: number;                // Sub-category stacking order within the variant layer
+  required: boolean;             // Must the user pick a trait from this sub-category?
   iconUrl?: string;              // URL to the sub-category's SVG icon
   animation?: AnimationType;     // Preferred transition animation
   items: TraitItem[];

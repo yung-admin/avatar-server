@@ -200,6 +200,7 @@ export function loadVariants(
         name: meta.name,
         order: meta.order,
         zIndex: meta.zIndex,
+        required: meta.required,
         items: subItems.map((s) =>
           rawToVariantSubItem(s, config, project, base, raw.path, meta.id)
         ),

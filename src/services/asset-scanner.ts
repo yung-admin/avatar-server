@@ -222,6 +222,7 @@ export interface VariantSubCategoryMeta {
   name: string;
   order: number;
   zIndex: number;
+  required: boolean;
   iconUrl?: string;
   animation?: AnimationType;
 }
@@ -250,6 +251,7 @@ export function loadVariantSubCategoryMeta(
         name: ov.name ?? titleCase(id),
         order: ov.order ?? i,
         zIndex: ov.zIndex ?? i,
+        required: ov.required ?? false,
         iconUrl: buildCategoryIconUrl(config, id),
       };
       if (ov.animation) meta.animation = ov.animation as AnimationType;
@@ -262,6 +264,7 @@ export function loadVariantSubCategoryMeta(
     name: titleCase(id),
     order: i,
     zIndex: i,
+    required: false,
     iconUrl: buildCategoryIconUrl(config, id),
   }));
 }

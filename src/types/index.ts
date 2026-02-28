@@ -95,6 +95,7 @@ export interface VariantSubCategory {
   name: string;
   order: number;
   zIndex: number;
+  required: boolean;
   iconUrl?: string;
   defaultTraitId?: string | null;
   animation?: AnimationType;
