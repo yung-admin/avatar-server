@@ -4,7 +4,8 @@
     "order": 0,
     "zIndex": 0,
     "required": true,
-    "animation": "fade"
+    "animation": "fade",
+    "animationBehavior": "stack"
   },
   "ears": {
     "name": "Ears",

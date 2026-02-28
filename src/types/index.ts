@@ -50,6 +50,7 @@ export interface TraitItem {
 }
 
 export type AnimationType = "fade" | "leftToRight";
+export type AnimationBehavior = "blend" | "stack";
 
 export interface CategoryMeta {
   id: string;
@@ -60,6 +61,7 @@ export interface CategoryMeta {
   iconUrl?: string;
   defaultTraitId?: string | null;
   animation?: AnimationType;
+  animationBehavior?: AnimationBehavior;
 }
 
 export interface CategoryResponse {
@@ -99,6 +101,7 @@ export interface VariantSubCategory {
   iconUrl?: string;
   defaultTraitId?: string | null;
   animation?: AnimationType;
+  animationBehavior?: AnimationBehavior;
   items: TraitItem[];
 }
 

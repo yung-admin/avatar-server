@@ -4,13 +4,14 @@
     "order": 0,
     "zIndex": 0,
     "required": true,
-    "animation": "fade"
+    "animation": "fade",
+    "animationBehavior": "stack"
   },
   "ears": {
     "name": "Ears",
     "order": 1,
     "zIndex": 1,
-    "required": false,
+    "required": true,
     "animation": "fade"
   },
   "top": {

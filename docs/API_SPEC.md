@@ -121,6 +121,7 @@ Returns a base body type with its ordered list of trait categories and rendering
 | `iconUrl` | `string?` | URL to the category's SVG icon for the editor UI. Optional. |
 | `defaultTraitId` | `string \| null` | The default trait ID for this category, from the base's `defaults.json`. `null` means no default. |
 | `animation` | `"fade" \| "leftToRight"` | Preferred transition animation when switching traits in this category. Optional. |
+| `animationBehavior` | `"blend" \| "stack"` | How outgoing/incoming traits overlap during transition. `blend`: both visible simultaneously (can cause bleed-through on translucent layers). `stack`: new trait renders on top of old, old removed after transition completes. Optional — defaults to `blend` if omitted. |
 
 #### Base Defaults
 
@@ -391,6 +392,7 @@ interface Frame {
 
 ```typescript
 type AnimationType = "fade" | "leftToRight";
+type AnimationBehavior = "blend" | "stack";
 
 interface CategoryMeta {
   id: string;                    // Category identifier, used in URLs
@@ -401,6 +403,7 @@ interface CategoryMeta {
   iconUrl?: string;              // URL to the category's SVG icon
   defaultTraitId?: string | null; // Default trait ID for this category
   animation?: AnimationType;     // Preferred transition animation
+  animationBehavior?: AnimationBehavior; // Transition overlap mode (default: "blend")
 }
 ```
 
@@ -422,6 +425,7 @@ interface VariantSubCategory {
   required: boolean;             // Must the user pick a trait from this sub-category?
   iconUrl?: string;              // URL to the sub-category's SVG icon
   animation?: AnimationType;     // Preferred transition animation
+  animationBehavior?: AnimationBehavior; // Transition overlap mode (default: "blend")
   items: TraitItem[];
 }
 ```

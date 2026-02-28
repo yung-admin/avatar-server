@@ -207,6 +207,7 @@ export function loadVariants(
       };
       if (meta.iconUrl) subCat.iconUrl = meta.iconUrl;
       if (meta.animation) subCat.animation = meta.animation;
+      if (meta.animationBehavior) subCat.animationBehavior = meta.animationBehavior;
       return subCat;
     });
 

@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { ServerConfig, CategoryMeta, AnimationType, BaseDefaults } from "../types";
+import { ServerConfig, CategoryMeta, AnimationType, AnimationBehavior, BaseDefaults } from "../types";
 import { buildCategoryIconUrl } from "./image-url";
 
 const PREMADES_DIR = "Legends";
@@ -73,6 +73,7 @@ export function loadCategoryMeta(
         iconUrl: buildCategoryIconUrl(config, id),
       };
       if (ov.animation) cat.animation = ov.animation as AnimationType;
+      if (ov.animationBehavior) cat.animationBehavior = ov.animationBehavior as AnimationBehavior;
       return cat;
     });
   } else {
@@ -97,6 +98,7 @@ export function loadCategoryMeta(
       required: false,
       iconUrl: buildCategoryIconUrl(config, "background"),
       animation: "fade",
+      animationBehavior: "stack",
     });
   }
 
@@ -225,6 +227,7 @@ export interface VariantSubCategoryMeta {
   required: boolean;
   iconUrl?: string;
   animation?: AnimationType;
+  animationBehavior?: AnimationBehavior;
 }
 
 export function loadVariantSubCategoryMeta(
@@ -255,6 +258,7 @@ export function loadVariantSubCategoryMeta(
         iconUrl: buildCategoryIconUrl(config, id),
       };
       if (ov.animation) meta.animation = ov.animation as AnimationType;
+      if (ov.animationBehavior) meta.animationBehavior = ov.animationBehavior as AnimationBehavior;
       return meta;
     }).sort((a, b) => a.order - b.order);
   }
