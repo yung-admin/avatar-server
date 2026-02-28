@@ -9,7 +9,7 @@ const CATEGORY_ICONS = [
   "headgear", "suits", "pattern", "arms",
 ];
 
-const UTILITY_ICONS = ["eye", "save", "close", "template"];
+const UTILITY_ICONS = ["eye", "save", "close", "template", "random"];
 
 export function createIconRouter(config: ServerConfig, cache: Cache): Router {
   const router = Router({ mergeParams: true });
