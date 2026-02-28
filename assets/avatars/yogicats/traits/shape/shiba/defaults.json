@@ -1,8 +1,7 @@
 {
   "variant": "OG",
   "variantTraits": {
-    "pattern": "shiba-OG-pattern-none",
-    "arms": null
+    "pattern": "shiba-OG-pattern-none"
   },
   "traits": {
     "background": null,

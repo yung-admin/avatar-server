@@ -247,20 +247,22 @@ export function loadVariantSubCategoryMeta(
     const overrides: Record<string, Partial<VariantSubCategoryMeta>> = JSON.parse(
       fs.readFileSync(metaPath, "utf-8")
     );
-    return subdirNames.map((id, i) => {
-      const ov = overrides[id] || {};
-      const meta: VariantSubCategoryMeta = {
-        id,
-        name: ov.name ?? titleCase(id),
-        order: ov.order ?? i,
-        zIndex: ov.zIndex ?? i,
-        required: ov.required ?? false,
-        iconUrl: buildCategoryIconUrl(config, id),
-      };
-      if (ov.animation) meta.animation = ov.animation as AnimationType;
-      if (ov.animationBehavior) meta.animationBehavior = ov.animationBehavior as AnimationBehavior;
-      return meta;
-    }).sort((a, b) => a.order - b.order);
+    return subdirNames
+      .filter((id) => !(overrides[id] as any)?.hidden)
+      .map((id, i) => {
+        const ov = overrides[id] || {};
+        const meta: VariantSubCategoryMeta = {
+          id,
+          name: ov.name ?? titleCase(id),
+          order: ov.order ?? i,
+          zIndex: ov.zIndex ?? i,
+          required: ov.required ?? false,
+          iconUrl: buildCategoryIconUrl(config, id),
+        };
+        if (ov.animation) meta.animation = ov.animation as AnimationType;
+        if (ov.animationBehavior) meta.animationBehavior = ov.animationBehavior as AnimationBehavior;
+        return meta;
+      }).sort((a, b) => a.order - b.order);
   }
 
   return subdirNames.map((id, i) => ({
